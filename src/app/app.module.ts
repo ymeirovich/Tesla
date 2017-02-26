@@ -15,9 +15,11 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
-import { EtlDataService } from './etl-data.service';
+import { EtlDataService } from './shared/etl-data.service';
 import { EditFormComponent } from './edit-form/edit-form.component';
-
+import { MockBackendFactory } from './shared/mockBackendFactory';
+import {ChatService} from './shared/chat.service';
+import {WebSocketService} from './shared/websocket.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { EditFormComponent } from './edit-form/edit-form.component';
   imports: [
     BrowserModule,
     FormsModule,
-    // HttpModule,
+    HttpModule,
     // MaterialModule.forRoot(),
     GridModule,
     ChartsModule,
@@ -38,14 +40,18 @@ import { EditFormComponent } from './edit-form/edit-form.component';
     DialogModule
   ],
   providers: [
-    MockBackend,
+    //MockBackend,
     BaseRequestOptions,
     EtlDataService,
-    {
-      provide: Http,
-      deps: [MockBackend, BaseRequestOptions],
-      useFactory: (backend: MockBackend, options: BaseRequestOptions) => { return new Http(backend, options); }
-    }
+    ChatService,
+    WebSocketService,
+    // {
+    //   provide: Http,
+    //   deps: [MockBackend, BaseRequestOptions],
+    //   useFactory: (backend: MockBackend, options: BaseRequestOptions) => {
+    //     return new Http(backend, options);
+    //   }
+    // }
   ],
   bootstrap: [AppComponent]
 })

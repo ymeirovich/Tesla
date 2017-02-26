@@ -1,7 +1,7 @@
 
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { IEtlProps } from '../mock-data.interface';
+import { IEtlProps } from '../shared/data.interface';
 
 @Component({
   selector: 'kendo-grid-edit-form',

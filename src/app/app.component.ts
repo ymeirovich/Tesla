@@ -1,17 +1,19 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
-import { MockBackendService } from './mock-backend.service';
+//import { MockBackendService } from './shared/mock-backend.service';
 import { Observable } from 'rxjs/Observable';
-import { EtlDataService } from './etl-data.service';
-import { IEtlProcesses } from './mock-data.interface';
+import { EtlDataService } from './shared/etl-data.service';
+import { IEtlProcesses } from './shared/data.interface';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
+
+import {ChatService, Message} from './shared/chat.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [MockBackendService]
+  providers: []
 })
 export class AppComponent {
   title = 'Server Load - ';
@@ -23,11 +25,11 @@ export class AppComponent {
   private isNew: boolean;
 
   constructor(
-    private mockBackendService: MockBackendService,
+    //private mockBackendService: MockBackendService,
     private etlDataService: EtlDataService,
   ) {
     this.serverId = '';
-    this.mockBackendService.start(); 
+    //this.mockBackendService.start(); 
     this.etlDataService.getEtlProcesses().subscribe((res) => {
       this.gridData = res;
     });
